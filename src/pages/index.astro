@@ -1,24 +1,603 @@
 ---
-import "../styles/global.css";
-// Component Imports
-import { Button } from "@/components/ui/button";
+import MainLayout from '@/layouts/main.astro';
+import CtaLink from '@/components/landing/CtaLink.astro';
+import DemoContactForm from '@/components/landing/DemoContactForm';
+import IconCard from '@/components/landing/IconCard.astro';
+import ProjectBentoCard from '@/components/landing/ProjectBentoCard.astro';
+import SectionHeader from '@/components/landing/SectionHeader.astro';
+import ServiceStrip from '@/components/landing/ServiceStrip.astro';
+import TestimonialTile from '@/components/landing/TestimonialTile.astro';
+import {
+  ArrowRight,
+  BarChart3,
+  Bell,
+  Bot,
+  BriefcaseBusiness,
+  ChevronDown,
+  Code2,
+  Compass,
+  Cpu,
+  Database,
+  Fingerprint,
+  Globe,
+  Handshake,
+  Layers3,
+  Lightbulb,
+  Menu,
+  Rocket,
+  ShieldCheck,
+  Sparkles,
+  Target,
+  TimerReset,
+  TrendingUp,
+  UsersRound,
+  Workflow,
+  Wrench,
+  type LucideIcon,
+} from 'lucide-react';
+import '../styles/landing.css';
 
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+type ProjectPanel = {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  meta?: string;
+  highlights?: string[];
+  size?: 'xl' | 'lg' | 'md' | 'sm';
+};
+
+type TeamPanel = {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  meta?: string;
+};
+
+type ServicePanel = {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  phase: string;
+  outcomes: string[];
+};
+
+type JourneyStep = {
+  title: string;
+  detail: string;
+  icon: LucideIcon;
+};
+
+type Testimonial = {
+  quote: string;
+  author: string;
+  role: string;
+};
+
+const projects: ProjectPanel[] = [
+  {
+    title: 'Northline Metrics',
+    meta: 'Usage & Analytics SaaS',
+    description:
+      'A real-time intelligence dashboard that turns product telemetry into pricing, retention, and expansion decisions.',
+    highlights: ['Live telemetry', 'Pricing intelligence', 'Retention drivers'],
+    icon: BarChart3,
+    size: 'xl',
+  },
+  {
+    title: 'Signal Relay',
+    meta: 'Workflow Automation SaaS',
+    description:
+      'A no-code automation platform that connects fragmented internal tools and eliminates manual operations for growing teams.',
+    highlights: ['Workflow orchestration', 'Team integrations'],
+    icon: Layers3,
+    size: 'lg',
+  },
+  {
+    title: 'VaultScope',
+    meta: 'Compliance SaaS',
+    description:
+      'A governance platform that centralizes audit artifacts, policy workflows, and role-based access for regulated products.',
+    highlights: ['Audit readiness', 'Policy governance'],
+    icon: ShieldCheck,
+    size: 'md',
+  },
+  {
+    title: 'OrbitDesk',
+    meta: 'Customer Success SaaS',
+    description:
+      'A customer operations workspace unifying onboarding, health scoring, and renewal playbooks for CS teams.',
+    highlights: ['Health scoring', 'Renewal workflows'],
+    icon: UsersRound,
+    size: 'md',
+  },
+  {
+    title: 'LedgerFlow',
+    meta: 'Revenue Operations SaaS',
+    description:
+      'A data model and reporting layer that syncs finance and product metrics for revenue forecasting.',
+    highlights: ['Forecast models', 'Finance sync'],
+    icon: Database,
+    size: 'sm',
+  },
+  {
+    title: 'PulsePilot',
+    meta: 'Alerts & Reliability SaaS',
+    description:
+      'A reliability platform for anomaly detection, incident coordination, and post-incident visibility.',
+    highlights: ['Incident playbooks', 'Alert routing'],
+    icon: Bell,
+    size: 'sm',
+  },
+  {
+    title: 'FlowDock',
+    meta: 'Internal Ops SaaS',
+    description:
+      'An internal operations engine that standardizes approvals, handoffs, and compliance checkpoints.',
+    highlights: ['Approval routing', 'Ops governance'],
+    icon: Workflow,
+    size: 'lg',
+  },
+  {
+    title: 'AssistLoop',
+    meta: 'AI Support SaaS',
+    description:
+      'A support intelligence layer that prioritizes tickets and drafts action-ready responses for service teams.',
+    highlights: ['Queue intelligence', 'Agent copilot'],
+    icon: Bot,
+    size: 'md',
+  },
+];
+
+const services: ServicePanel[] = [
+  {
+    title: 'SaaS Product Strategy',
+    phase: 'Discover',
+    description:
+      'We pressure-test your market position, define high-impact releases, and lock roadmap decisions to measurable outcomes.',
+    icon: Rocket,
+    outcomes: ['Positioning brief + ICP priorities', 'Monetization and retention model', 'Milestone plan with risk assumptions'],
+  },
+  {
+    title: 'Design + Development',
+    phase: 'Build',
+    description:
+      'Cross-functional squads execute product design, architecture, and production engineering as one fast iteration loop.',
+    icon: Code2,
+    outcomes: ['Conversion-focused UX system', 'Scalable Astro + TypeScript foundations', 'Frequent demo releases with QA checkpoints'],
+  },
+  {
+    title: 'Lifecycle Optimization',
+    phase: 'Scale',
+    description:
+      'After launch, we improve activation, pricing leverage, and expansion mechanics through controlled experimentation.',
+    icon: Wrench,
+    outcomes: ['Activation funnel instrumentation', 'Experiment backlog and test cadence', 'Growth reporting with decision loops'],
+  },
+  {
+    title: 'Platform Security',
+    phase: 'Protect',
+    description:
+      'We establish secure defaults, policy enforcement, and compliance-readiness workflows for enterprise-grade credibility.',
+    icon: Fingerprint,
+    outcomes: ['Identity and access hardening', 'Audit and governance playbooks', 'Security architecture review'],
+  },
+];
+
+const team: TeamPanel[] = [
+  {
+    title: 'Ari Kent',
+    meta: 'Founder & Product Lead',
+    description:
+      'Owns roadmap strategy and ensures every release ties directly to user behavior and business outcomes.',
+    icon: BriefcaseBusiness,
+  },
+  {
+    title: 'Samir Orell',
+    meta: 'Engineering Director',
+    description:
+      'Leads architecture and delivery quality across APIs, cloud infrastructure, and automation pipelines.',
+    icon: Cpu,
+  },
+  {
+    title: 'Nia Calder',
+    meta: 'UX Systems Designer',
+    description:
+      'Shapes conversion-focused product experiences with accessibility standards built into each interface layer.',
+    icon: Target,
+  },
+  {
+    title: 'Maya Flynn',
+    meta: 'Growth Strategist',
+    description:
+      'Builds launch narratives, demand experiments, and partner-led growth programs for expansion-stage SaaS teams.',
+    icon: TrendingUp,
+  },
+];
+
+const partners = [
+  'Cloudframe',
+  'OpsNexus',
+  'LaunchPilot',
+  'Datamine Works',
+  'Pulsepath',
+  'ForgeScale',
+  'Nimbus Accounts',
+  'Helix Legal',
+];
+
+const sponsors = [
+  'North Arc Ventures',
+  'Summit Capital',
+  'Atlantic Grid',
+  'Vertex Collective',
+  'Signal Harbor',
+  'Foundry Advisory',
+  'Open Prairie Fund',
+  'Monarch Seed',
+];
+
+const heroPillars = [
+  {
+    icon: Compass,
+    label: 'Roadmaps built from market signals, not guesswork.',
+  },
+  {
+    icon: TimerReset,
+    label: 'Tight sprint loops that keep launches moving.',
+  },
+  {
+    icon: TrendingUp,
+    label: 'Growth systems tuned for activation and expansion.',
+  },
+];
+
+const journeySteps: JourneyStep[] = [
+  {
+    title: 'Discovery Sprint',
+    detail: 'Clarify goals, edge cases, and decision constraints before build.',
+    icon: Lightbulb,
+  },
+  {
+    title: 'Build + QA Cycle',
+    detail: 'Ship design and engineering in one coordinated release loop.',
+    icon: Rocket,
+  },
+  {
+    title: 'Launch + Growth Loop',
+    detail: 'Instrument analytics and scale the highest-leverage product paths.',
+    icon: Globe,
+  },
+];
+
+const testimonials: Testimonial[] = [
+  {
+    quote: 'The team translated our product ambiguity into a clear launch path within days.',
+    author: 'Jordan Pike',
+    role: 'COO, Cloudframe',
+  },
+  {
+    quote: 'Execution quality stayed high even while we accelerated the timeline.',
+    author: 'Elena Ward',
+    role: 'VP Product, Summit Capital Portfolio',
+  },
+  {
+    quote: 'They built systems we could scale without rewriting core architecture later.',
+    author: 'Kian Morales',
+    role: 'CTO, LaunchPilot',
+  },
+  {
+    quote: 'Retention improved immediately after the onboarding redesign shipped.',
+    author: 'Margo Lin',
+    role: 'Head of Growth, Pulsepath',
+  },
+  {
+    quote: 'The roadmap became far more strategic once every sprint had measurable outcomes.',
+    author: 'Adrian Cole',
+    role: 'Founder, ForgeScale',
+  },
+  {
+    quote: 'We launched enterprise-ready workflows much faster than our previous attempts.',
+    author: 'Rina Holt',
+    role: 'Operations Director, Helix Legal',
+  },
+  {
+    quote: 'Their teams move quickly but still communicate every dependency clearly.',
+    author: 'Sasha Kim',
+    role: 'Program Lead, Datamine Works',
+  },
+  {
+    quote: 'Our pricing model became far more defensible after their product analytics setup.',
+    author: 'Noah Beck',
+    role: 'CRO, Nimbus Accounts',
+  },
+  {
+    quote: 'The quality bar stayed consistent from early prototypes through production launch.',
+    author: 'Iris Shaw',
+    role: 'Product Director, Atlantic Grid',
+  },
+];
+
+const testimonialColumns = [0, 1, 2].map((columnIndex) =>
+  testimonials.filter((_, testimonialIndex) => testimonialIndex % 3 === columnIndex),
+);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
+<MainLayout
+  title="Eastrix Labs | SaaS Product Studio"
+  description="Eastrix Labs builds ambitious SaaS products with strategy, design, engineering, and growth execution."
+>
+  <a class="skip-link" href="#main-content">Skip to Main Content</a>
+  <div class="landing-page">
+    <header class="site-header" id="top" data-open="false">
+      <a class="brandmark" href="#top" aria-label="Eastrix Labs Home">
+        <span class="brandmark__glyph" aria-hidden="true">EL</span>
+        <span class="brandmark__label">Eastrix Labs</span>
+      </a>
 
-	<body>
-		<div class="grid place-items-center h-screen content-center">
-			<Button>Button</Button>
-		</div>
-	</body>
-</html>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary">
+        <a href="#projects">Projects</a>
+        <a href="#services">Our Services</a>
+        <a href="#partners">Our Partners</a>
+        <a href="#team">Meet The Team</a>
+        <a href="#contact">Contact Us</a>
+        <CtaLink href="#contact" label="Book A Demo" icon={ArrowRight} className="site-nav__demo" />
+      </nav>
+
+      <div class="site-header__actions">
+        <CtaLink href="#contact" label="Book A Demo" icon={ArrowRight} className="site-header__cta" />
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-navigation"
+          aria-label="Toggle menu"
+        >
+          <Menu class="menu-toggle__icon menu-toggle__icon--closed" size={18} aria-hidden="true" focusable="false" />
+          <ChevronDown class="menu-toggle__icon menu-toggle__icon--open" size={18} aria-hidden="true" focusable="false" />
+          <span class="sr-only">Toggle menu</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="hero-section">
+        <div class="hero-orb hero-orb--one" aria-hidden="true"></div>
+        <div class="hero-orb hero-orb--two" aria-hidden="true"></div>
+        <div class="hero-grid">
+          <div class="hero-content">
+            <p class="hero-kicker reveal reveal--1">
+              <Sparkles size={16} aria-hidden="true" focusable="false" />
+              <span>Purpose-built for category-defining SaaS products</span>
+            </p>
+            <h1 class="hero-title reveal reveal--2">Launch SaaS Products That Outgrow Their First Version</h1>
+            <p class="hero-copy reveal reveal--3">
+              Eastrix Labs helps founders and operators turn SaaS concepts into durable products with focused execution,
+              clean architecture, and measurable growth momentum.
+            </p>
+            <ul class="hero-pillars reveal reveal--4" aria-label="How Eastrix Labs operates">
+              {
+                heroPillars.map((pillar) => {
+                  const PillarIcon = pillar.icon;
+                  return (
+                    <li>
+                      <PillarIcon size={15} aria-hidden="true" focusable="false" />
+                      <span>{pillar.label}</span>
+                    </li>
+                  );
+                })
+              }
+            </ul>
+            <div class="hero-actions reveal reveal--5">
+              <CtaLink href="#contact" label="Book A Demo" icon={ArrowRight} />
+              <CtaLink href="#services" label="See Our Process" variant="ghost" icon={Rocket} />
+            </div>
+          </div>
+
+          <aside class="hero-journey reveal reveal--6" aria-label="Delivery approach">
+            <p class="hero-journey__eyebrow">Delivery Engine</p>
+            <h2>Focused execution from concept to scalable launch.</h2>
+            <ol class="hero-journey__steps">
+              {
+                journeySteps.map((step) => {
+                  const StepIcon = step.icon;
+                  return (
+                    <li>
+                      <div class="hero-journey__step-main">
+                        <span class="hero-journey__icon" aria-hidden="true">
+                          <StepIcon size={15} aria-hidden="true" focusable="false" />
+                        </span>
+                        <div>
+                          <h3>{step.title}</h3>
+                          <p>{step.detail}</p>
+                        </div>
+                      </div>
+                    </li>
+                  );
+                })
+              }
+            </ol>
+            <p class="hero-journey__summary">26 launches · 94% on-time milestones · $48M+ ARR supported</p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="projects" class="content-section">
+        <SectionHeader
+          eyebrow="Projects"
+          title="Products That Prove Business Value"
+          description="Each platform ships with clear conversion goals and a roadmap tied to revenue and retention outcomes."
+        />
+        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-12 xl:auto-rows-fr xl:grid-flow-dense">
+          {projects.map((project) => <ProjectBentoCard {...project} />)}
+        </div>
+      </section>
+
+      <section id="services" class="content-section">
+        <SectionHeader
+          eyebrow="Our Services"
+          title="A Structured SaaS Delivery System"
+          description="Services run as phases with explicit deliverables so teams always know what is shipping and why it matters."
+        />
+        <div class="service-strips">
+          {services.map((service, index) => <ServiceStrip {...service} index={index + 1} />)}
+        </div>
+      </section>
+
+      <section id="partners" class="content-section content-section--partners">
+        <SectionHeader
+          align="center"
+          eyebrow="Our Partners"
+          title="Partners and Sponsors Supporting Every Launch"
+          description="Cross-functional collaboration with specialist firms keeps execution speed high while preserving delivery quality."
+        />
+
+        <div class="mt-6 grid gap-3">
+          <p class="m-0 text-xs font-bold uppercase tracking-[0.08em] text-[#36576a]">Partners</p>
+          <div
+            class="relative overflow-hidden rounded-2xl border border-[#202d3830] bg-[#f6f1e4] py-2"
+            aria-label="Partner organizations"
+          >
+            <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#f6f1e4] to-transparent"></div>
+            <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#f6f1e4] to-transparent"></div>
+            <ul class="animate-marquee-left flex w-max min-w-full items-center gap-3 px-3">
+              {
+                [...partners, ...partners].map((partner, index) => (
+                  <li
+                    class="m-0 inline-flex min-h-[2.2rem] items-center gap-1.5 whitespace-nowrap rounded-full border border-[#1a232b22] bg-[#fffef9] px-3 py-1.5 text-[0.83rem] text-[#24323e]"
+                    aria-hidden={index >= partners.length}
+                  >
+                    <Handshake size={15} aria-hidden="true" focusable="false" />
+                    <span>{partner}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <p class="m-0 text-xs font-bold uppercase tracking-[0.08em] text-[#36576a]">Sponsors</p>
+          <div
+            class="relative overflow-hidden rounded-2xl border border-[#202d3830] bg-[#f6f1e4] py-2"
+            aria-label="Sponsor organizations"
+          >
+            <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#f6f1e4] to-transparent"></div>
+            <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#f6f1e4] to-transparent"></div>
+            <ul class="animate-marquee-right flex w-max min-w-full items-center gap-3 px-3">
+              {
+                [...sponsors, ...sponsors].map((sponsor, index) => (
+                  <li
+                    class="m-0 inline-flex min-h-[2.2rem] items-center gap-1.5 whitespace-nowrap rounded-full border border-[#1a232b22] bg-[#fffef9] px-3 py-1.5 text-[0.83rem] text-[#24323e]"
+                    aria-hidden={index >= sponsors.length}
+                  >
+                    <Handshake size={15} aria-hidden="true" focusable="false" />
+                    <span>{sponsor}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+
+        <div class="testimonial-marquee-wrap">
+          <p class="m-0 text-xs font-bold uppercase tracking-[0.08em] text-[#36576a]">Testimonials</p>
+          <div class="testimonial-columns" aria-label="Client testimonials">
+            {
+              testimonialColumns.map((column, index) => {
+                const directionClass = index === 1 ? 'testimonial-column--down' : 'testimonial-column--up';
+                return (
+                  <div class={`testimonial-column ${directionClass}`}>
+                    <div class="testimonial-column__track">
+                      {column.map((testimonial) => <TestimonialTile {...testimonial} />)}
+                      {column.map((testimonial) => <TestimonialTile {...testimonial} ariaHidden={true} />)}
+                    </div>
+                  </div>
+                );
+              })
+            }
+          </div>
+        </div>
+      </section>
+
+      <section id="team" class="content-section">
+        <SectionHeader
+          eyebrow="Meet The Team"
+          title="Senior Operators Across Product, Engineering, and Growth"
+          description="You work directly with experienced builders who stay close to strategy and execution from start to finish."
+        />
+        <div class="card-grid card-grid--four team-grid">
+          {team.map((member) => <IconCard {...member} />)}
+        </div>
+      </section>
+
+      <section id="contact" class="content-section content-section--contact">
+        <SectionHeader
+          eyebrow="Contact Us"
+          title="Book a Demo and Plan Your Next SaaS Milestone"
+          description="Share your goals, timeline, and product scope. We will map the next execution steps with your team."
+        />
+        <div class="mt-6 grid items-start gap-4 lg:grid-cols-[minmax(240px,0.8fr)_minmax(0,1.2fr)]">
+          <article class="reveal-card rounded-2xl border border-[#202d3830] bg-[#fffef8] p-4">
+            <h3 class="m-0 font-['Syne',_'Segoe_UI',_sans-serif] text-[1.2rem]">What happens next</h3>
+            <ul class="mt-4 grid list-none gap-3 p-0">
+              <li class="flex items-start gap-2 text-[#56646f]">
+                <Lightbulb size={16} aria-hidden="true" focusable="false" />
+                <span>We review your product goals, constraints, and delivery timeline.</span>
+              </li>
+              <li class="flex items-start gap-2 text-[#56646f]">
+                <Compass size={16} aria-hidden="true" focusable="false" />
+                <span>You receive a scoped execution plan and milestone sequence.</span>
+              </li>
+              <li class="flex items-start gap-2 text-[#56646f]">
+                <Rocket size={16} aria-hidden="true" focusable="false" />
+                <span>Kickoff begins with a focused sprint and measurable launch targets.</span>
+              </li>
+            </ul>
+          </article>
+
+          <DemoContactForm client:load />
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© {new Date().getFullYear()} Eastrix Labs</p>
+      <p>Shipping resilient SaaS products with focused teams.</p>
+    </footer>
+  </div>
+
+  <script is:inline>
+    (() => {
+      const header = document.querySelector('.site-header');
+      const menuButton = document.querySelector('.menu-toggle');
+      const nav = document.getElementById('site-navigation');
+
+      if (!header || !menuButton || !nav) return;
+
+      const setOpen = (isOpen) => {
+        header.setAttribute('data-open', isOpen ? 'true' : 'false');
+        menuButton.setAttribute('aria-expanded', String(isOpen));
+      };
+
+      setOpen(false);
+
+      menuButton.addEventListener('click', () => {
+        const isOpen = header.getAttribute('data-open') === 'true';
+        setOpen(!isOpen);
+      });
+
+      nav.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setOpen(false));
+      });
+
+      const mediaQuery = window.matchMedia('(min-width: 861px)');
+      const handleChange = (event) => {
+        if (event.matches) setOpen(false);
+      };
+
+      if (typeof mediaQuery.addEventListener === 'function') {
+        mediaQuery.addEventListener('change', handleChange);
+      } else if (typeof mediaQuery.addListener === 'function') {
+        mediaQuery.addListener(handleChange);
+      }
+    })();
+  </script>
+</MainLayout>

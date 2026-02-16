@@ -1,0 +1,19 @@
+---
+import type { LucideIcon } from 'lucide-react';
+
+interface Props {
+  href: string;
+  label: string;
+  variant?: 'primary' | 'ghost';
+  icon?: LucideIcon;
+  ariaLabel?: string;
+  className?: string;
+}
+
+const { href, label, variant = 'primary', icon: Icon, ariaLabel, className } = Astro.props;
+---
+
+<a class={`cta-link cta-link--${variant}${className ? ` ${className}` : ''}`} href={href} aria-label={ariaLabel ?? label}>
+  <span>{label}</span>
+  {Icon && <Icon size={16} aria-hidden="true" focusable="false" />}
+</a>

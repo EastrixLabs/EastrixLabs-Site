@@ -1,0 +1,32 @@
+---
+import type { LucideIcon } from 'lucide-react';
+
+interface Props {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  outcomes: string[];
+  index: number;
+  phase?: string;
+}
+
+const { title, description, icon: Icon, outcomes, index, phase } = Astro.props;
+const itemIndex = String(index).padStart(2, '0');
+---
+
+<article class="service-strip reveal-card">
+  <div class="service-strip__meta">
+    <p class="service-strip__index">{itemIndex}</p>
+    {phase && <p class="service-strip__phase">{phase}</p>}
+  </div>
+  <div class="service-strip__icon-wrap" aria-hidden="true">
+    <Icon size={18} strokeWidth={1.9} aria-hidden="true" focusable="false" />
+  </div>
+  <div class="service-strip__content">
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <ul>
+      {outcomes.map((outcome) => <li>{outcome}</li>)}
+    </ul>
+  </div>
+</article>
