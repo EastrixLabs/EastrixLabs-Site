@@ -1,15 +1,35 @@
 ---
 import '../styles/global.css';
-const { content } = Astro.props;
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title = 'Eastrix Labs',
+  description = 'Eastrix Labs builds and scales SaaS products from strategy to launch.',
+  canonical,
+} = Astro.props;
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content={description} />
+		<meta name="generator" content={Astro.generator} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
-		<title>{content.title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Syne:wght@500;600;700;800&display=swap"
+		/>
+		{canonical && <link rel="canonical" href={canonical} />}
+		<title>{title}</title>
 	</head>
 	<body>
 		<slot />

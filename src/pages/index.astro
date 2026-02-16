@@ -1,24 +1,353 @@
 ---
-import "../styles/global.css";
-// Component Imports
-import { Button } from "@/components/ui/button";
+import MainLayout from '@/layouts/main.astro';
+import CtaLink from '@/components/landing/CtaLink.astro';
+import IconCard from '@/components/landing/IconCard.astro';
+import SectionHeader from '@/components/landing/SectionHeader.astro';
+import {
+  ArrowRight,
+  BarChart3,
+  Blocks,
+  BriefcaseBusiness,
+  Code2,
+  Cpu,
+  Fingerprint,
+  Globe,
+  Handshake,
+  Layers3,
+  Lightbulb,
+  Mail,
+  Megaphone,
+  MessageSquareQuote,
+  Rocket,
+  ShieldCheck,
+  Sparkles,
+  Target,
+  Wrench,
+  type LucideIcon,
+} from 'lucide-react';
+import '../styles/landing.css';
 
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+type IconPanel = {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  meta?: string;
+};
+
+const projects: IconPanel[] = [
+  {
+    title: 'Northline Metrics',
+    meta: 'Usage & Analytics SaaS',
+    description:
+      'A real-time intelligence dashboard that turns product telemetry into pricing, retention, and expansion decisions.',
+    icon: BarChart3,
+  },
+  {
+    title: 'Signal Relay',
+    meta: 'Workflow Automation SaaS',
+    description:
+      'A no-code automation platform that connects fragmented internal tools and eliminates manual operations for growing teams.',
+    icon: Layers3,
+  },
+  {
+    title: 'VaultScope',
+    meta: 'Compliance SaaS',
+    description:
+      'A governance platform that centralizes audit artifacts, policy workflows, and role-based access for regulated products.',
+    icon: ShieldCheck,
+  },
+];
+
+const services: IconPanel[] = [
+  {
+    title: 'SaaS Product Strategy',
+    description:
+      'We define product opportunities, build go-to-market-ready roadmaps, and align features to measurable growth goals.',
+    icon: Rocket,
+  },
+  {
+    title: 'Design + Development',
+    description:
+      'Cross-functional squads ship resilient Astro + TypeScript platforms with fast interfaces and scalable architecture.',
+    icon: Code2,
+  },
+  {
+    title: 'Lifecycle Optimization',
+    description:
+      'From activation to retention, we improve conversion funnels, experiment velocity, and monetization mechanics.',
+    icon: Wrench,
+  },
+  {
+    title: 'Platform Security',
+    description:
+      'Security-by-default systems, identity hardening, and compliance planning that keeps enterprise buyers confident.',
+    icon: Fingerprint,
+  },
+];
+
+const team: IconPanel[] = [
+  {
+    title: 'Ari Kent',
+    meta: 'Founder & Product Lead',
+    description:
+      'Owns roadmap strategy and ensures every release ties directly to user behavior and business outcomes.',
+    icon: BriefcaseBusiness,
+  },
+  {
+    title: 'Samir Orell',
+    meta: 'Engineering Director',
+    description:
+      'Leads architecture and delivery quality across APIs, cloud infrastructure, and automation pipelines.',
+    icon: Cpu,
+  },
+  {
+    title: 'Nia Calder',
+    meta: 'UX Systems Designer',
+    description:
+      'Shapes conversion-focused product experiences with accessibility standards built into each interface layer.',
+    icon: Target,
+  },
+  {
+    title: 'Maya Flynn',
+    meta: 'Growth Strategist',
+    description:
+      'Builds launch narratives, demand experiments, and partner-led growth programs for expansion-stage SaaS teams.',
+    icon: Megaphone,
+  },
+];
+
+const partners = [
+  'Cloudframe',
+  'OpsNexus',
+  'LaunchPilot',
+  'Datamine Works',
+  'Pulsepath',
+  'ForgeScale',
+  'Nimbus Accounts',
+  'Helix Legal',
+];
+
+const stats = [
+  { value: '26', label: 'SaaS products launched' },
+  { value: '94%', label: 'Average on-time milestone delivery' },
+  { value: '$48M+', label: 'Collective client ARR supported' },
+];
+
+const techStack = ['AstroJS', 'TypeScript', 'Lucide React Icons'];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
+<MainLayout
+	title="Eastrix Labs | SaaS Product Studio"
+	description="Eastrix Labs builds ambitious SaaS products with strategy, design, engineering, and growth execution."
+>
+	<a class="skip-link" href="#main-content">Skip to Main Content</a>
+	<div class="landing-page">
+		<header class="site-header" id="top">
+			<a class="brandmark" href="#top" aria-label="Eastrix Labs Home">
+				<span class="brandmark__glyph" aria-hidden="true">EL</span>
+				<span class="brandmark__label">Eastrix Labs</span>
+			</a>
+			<nav class="site-nav" aria-label="Primary">
+				<a href="#projects">Projects</a>
+				<a href="#services">Our Services</a>
+				<a href="#partners">Our Partners</a>
+				<a href="#team">Meet The Team</a>
+				<a href="#contact">Contact Us</a>
+			</nav>
+			<CtaLink href="#contact" label="Book A Demo" icon={ArrowRight} />
+		</header>
 
-	<body>
-		<div class="grid place-items-center h-screen content-center">
-			<Button>Button</Button>
-		</div>
-	</body>
-</html>
+		<main id="main-content">
+			<section class="hero-section">
+				<div class="hero-orb hero-orb--one" aria-hidden="true"></div>
+				<div class="hero-orb hero-orb--two" aria-hidden="true"></div>
+				<div class="hero-grid">
+					<div class="hero-content">
+						<p class="hero-kicker reveal reveal--1">
+							<Sparkles size={16} aria-hidden="true" focusable="false" />
+							<span>Built for category-defining SaaS products</span>
+						</p>
+						<h1 class="hero-title reveal reveal--2">Eastrix Labs</h1>
+						<p class="hero-copy reveal reveal--3">
+							We partner with founders and operators to design, build, and scale SaaS platforms
+							that ship fast, convert hard, and stay resilient as complexity grows.
+						</p>
+						<ul class="tech-stack reveal reveal--4" aria-label="Technology stack">
+							{
+								techStack.map((item) => (
+									<li>
+										<Blocks size={14} aria-hidden="true" focusable="false" />
+										<span>{item}</span>
+									</li>
+								))
+							}
+						</ul>
+						<div class="hero-actions reveal reveal--5">
+							<CtaLink href="#contact" label="Book A Demo" icon={ArrowRight} />
+							<CtaLink href="#projects" label="Explore Projects" variant="ghost" icon={Rocket} />
+						</div>
+					</div>
+					<ul class="hero-stats reveal reveal--6" aria-label="Key company metrics">
+						{
+							stats.map((stat) => (
+								<li>
+									<p class="hero-stats__value">{stat.value}</p>
+									<p class="hero-stats__label">{stat.label}</p>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+			</section>
+
+			<section id="projects" class="content-section">
+				<SectionHeader
+					eyebrow="Projects"
+					title="Products That Prove Business Value"
+					description="Every build is tied to a clear revenue, retention, or operational target before the first sprint starts."
+				/>
+				<div class="card-grid">
+					{projects.map((project) => <IconCard {...project} />)}
+				</div>
+			</section>
+
+			<section id="services" class="content-section">
+				<SectionHeader
+					eyebrow="Our Services"
+					title="Full-Spectrum SaaS Execution"
+					description="From concept to scale, we run product, design, engineering, and growth as one integrated system."
+				/>
+				<div class="card-grid card-grid--four">
+					{services.map((service) => <IconCard {...service} />)}
+				</div>
+			</section>
+
+			<section id="partners" class="content-section content-section--partners">
+				<SectionHeader
+					align="center"
+					eyebrow="Our Partners"
+					title="Trusted by Operators Across the SaaS Ecosystem"
+					description="We collaborate with cloud, finance, legal, and growth partners to keep client launches fast and durable."
+				/>
+				<div class="partner-marquee">
+					<ul class="partner-marquee__track" aria-label="Partner organizations">
+						{
+							partners.map((partner) => (
+								<li class="partner-pill">
+									<Handshake size={15} aria-hidden="true" focusable="false" />
+									<span>{partner}</span>
+								</li>
+							))
+						}
+						{
+							partners.map((partner) => (
+								<li class="partner-pill" aria-hidden="true">
+									<Handshake size={15} aria-hidden="true" focusable="false" />
+									<span>{partner}</span>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+				<article class="partner-quote reveal-card">
+					<MessageSquareQuote size={18} aria-hidden="true" focusable="false" />
+					<p>
+						&quot;Eastrix Labs helped us move from idea to paying enterprise accounts in a single
+						quarter without compromising architecture quality.&quot;
+					</p>
+					<footer>
+						<strong>Jordan Pike</strong>
+						<span>COO, Cloudframe</span>
+					</footer>
+				</article>
+			</section>
+
+			<section id="team" class="content-section">
+				<SectionHeader
+					eyebrow="Meet The Team"
+					title="A Senior Crew Across Product, Engineering, and Growth"
+					description="We keep teams intentionally small so the people you meet are the people shipping your platform."
+				/>
+				<div class="card-grid card-grid--four">
+					{team.map((member) => <IconCard {...member} />)}
+				</div>
+			</section>
+
+			<section id="contact" class="content-section content-section--contact">
+				<SectionHeader
+					eyebrow="Contact Us"
+					title="Book a Demo and Map Your Next SaaS Milestone"
+					description="Tell us what you are building, where you are blocked, and what timeline you are targeting."
+				/>
+				<div class="contact-layout">
+					<article class="contact-panel reveal-card">
+						<h3>What happens next</h3>
+						<ul>
+							<li>
+								<Lightbulb size={16} aria-hidden="true" focusable="false" />
+								<span>We review your product goals and current constraints.</span>
+							</li>
+							<li>
+								<Globe size={16} aria-hidden="true" focusable="false" />
+								<span>You receive a proposed execution plan with milestones.</span>
+							</li>
+							<li>
+								<Rocket size={16} aria-hidden="true" focusable="false" />
+								<span>Kickoff starts with a scoped sprint and delivery timeline.</span>
+							</li>
+						</ul>
+						<a class="contact-mail" href="mailto:hello@eastrixlabs.com">
+							<Mail size={16} aria-hidden="true" focusable="false" />
+							<span>hello@eastrixlabs.com</span>
+						</a>
+					</article>
+
+					<form class="contact-form reveal-card" method="post" action="mailto:hello@eastrixlabs.com" enctype="text/plain">
+						<div class="field">
+							<label for="full-name">Full Name</label>
+							<input id="full-name" name="full_name" type="text" autocomplete="name" required />
+						</div>
+						<div class="field">
+							<label for="work-email">Work Email</label>
+							<input
+								id="work-email"
+								name="work_email"
+								type="email"
+								autocomplete="email"
+								required
+								spellcheck="false"
+							/>
+						</div>
+						<div class="field">
+							<label for="company-name">Company</label>
+							<input id="company-name" name="company_name" type="text" autocomplete="organization" required />
+						</div>
+						<div class="field">
+							<label for="timeline">Ideal Timeline</label>
+							<select id="timeline" name="timeline" required>
+								<option value="">Select one</option>
+								<option value="0-30">0 to 30 days</option>
+								<option value="31-60">31 to 60 days</option>
+								<option value="61-90">61 to 90 days</option>
+								<option value="90+">More than 90 days</option>
+							</select>
+						</div>
+						<div class="field field--full">
+							<label for="project-brief">Project Brief</label>
+							<textarea id="project-brief" name="project_brief" rows="4" required></textarea>
+						</div>
+						<button class="form-submit" type="submit">
+							<span>Book A Demo</span>
+							<ArrowRight size={16} aria-hidden="true" focusable="false" />
+						</button>
+					</form>
+				</div>
+			</section>
+		</main>
+
+		<footer class="site-footer">
+			<p>© {new Date().getFullYear()} Eastrix Labs</p>
+			<p>Shipping resilient SaaS products with focused teams.</p>
+		</footer>
+	</div>
+</MainLayout>
