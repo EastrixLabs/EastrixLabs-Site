@@ -1,5 +1,6 @@
 ---
 import type { LucideIcon } from 'lucide-react';
+import { cn } from "@/lib/utils";
 
 interface Props {
   href: string;
@@ -11,9 +12,23 @@ interface Props {
 }
 
 const { href, label, variant = 'primary', icon: Icon, ariaLabel, className } = Astro.props;
+
+const baseClasses =
+  'inline-flex min-h-11 items-center justify-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold no-underline transition hover:-translate-y-0.5';
+
+const variantClasses: Record<NonNullable<Props['variant']>, string> = {
+  primary:
+    'border-orange-700 bg-orange-600 text-white hover:bg-orange-500',
+  ghost:
+    'border-slate-300 bg-white text-slate-800 hover:border-slate-400 hover:bg-slate-50',
+};
 ---
 
-<a class={`cta-link cta-link--${variant}${className ? ` ${className}` : ''}`} href={href} aria-label={ariaLabel ?? label}>
+<a
+  class={cn(baseClasses, variantClasses[variant], className)}
+  href={href}
+  aria-label={ariaLabel ?? label}
+>
   <span>{label}</span>
   {Icon && <Icon size={16} aria-hidden="true" focusable="false" />}
 </a>

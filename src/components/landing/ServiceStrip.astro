@@ -1,5 +1,5 @@
 ---
-import type { LucideIcon } from 'lucide-react';
+import type { LucideIcon } from "lucide-react";
 
 interface Props {
   title: string;
@@ -11,22 +11,43 @@ interface Props {
 }
 
 const { title, description, icon: Icon, outcomes, index, phase } = Astro.props;
-const itemIndex = String(index).padStart(2, '0');
+const itemIndex = String(index).padStart(2, "0");
+const stripToneClasses =
+  index % 2 === 0
+    ? "border-l-orange-300 bg-orange-50"
+    : "border-l-teal-300 bg-emerald-50";
 ---
 
-<article class="service-strip reveal-card">
-  <div class="service-strip__meta">
-    <p class="service-strip__index">{itemIndex}</p>
-    {phase && <p class="service-strip__phase">{phase}</p>}
+<article
+  class={`reveal-card grid items-start gap-3 rounded-2xl border border-slate-200 border-l-4 p-4 md:flex md:items-start ${stripToneClasses}`}
+>
+  <div class="flex items-center justify-between text-left md:block md:w-14 md:text-center">
+    <p class="m-0 text-2xl font-semibold leading-none text-slate-900">{itemIndex}</p>
+    {
+      phase && (
+        <p class="mt-1 text-xs font-semibold uppercase tracking-wider text-slate-600">
+          {phase}
+        </p>
+      )
+    }
   </div>
-  <div class="service-strip__icon-wrap" aria-hidden="true">
+  <div
+    class="inline-grid h-8 w-8 place-items-center rounded-lg border border-slate-300 bg-white text-slate-800"
+    aria-hidden="true"
+  >
     <Icon size={18} strokeWidth={1.9} aria-hidden="true" focusable="false" />
   </div>
-  <div class="service-strip__content">
-    <h3>{title}</h3>
-    <p>{description}</p>
-    <ul>
-      {outcomes.map((outcome) => <li>{outcome}</li>)}
+  <div class="md:flex-1">
+    <h3 class="m-0 text-lg font-semibold leading-tight text-slate-900">{title}</h3>
+    <p class="mt-2 text-sm text-slate-600">{description}</p>
+    <ul class="mt-3 flex list-none flex-wrap gap-2 p-0">
+      {
+        outcomes.map((outcome) => (
+          <li class="inline-flex min-h-8 items-center rounded-full border border-slate-300 bg-white px-3 py-1 text-xs text-slate-700">
+            {outcome}
+          </li>
+        ))
+      }
     </ul>
   </div>
 </article>
