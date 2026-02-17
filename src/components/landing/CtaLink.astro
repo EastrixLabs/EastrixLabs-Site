@@ -11,9 +11,23 @@ interface Props {
 }
 
 const { href, label, variant = 'primary', icon: Icon, ariaLabel, className } = Astro.props;
+
+const baseClasses =
+  'inline-flex min-h-11 items-center justify-center gap-[0.45rem] rounded-full border border-transparent px-4 py-[0.74rem] text-[0.88rem] font-bold no-underline transition-[transform,color,background-color,border-color] duration-[220ms] ease-in-out';
+
+const variantClasses: Record<NonNullable<Props['variant']>, string> = {
+  primary:
+    'bg-[linear-gradient(120deg,#e54d2e_0%,#c7391c_100%)] text-white hover:-translate-y-0.5 hover:bg-[linear-gradient(120deg,#e45739_0%,#c7391c_100%)]',
+  ghost:
+    'border-[#1a232b33] bg-[#fffdf6] text-[#1a232b] hover:-translate-y-0.5 hover:border-[#1a232b4c] hover:bg-white',
+};
 ---
 
-<a class={`cta-link cta-link--${variant}${className ? ` ${className}` : ''}`} href={href} aria-label={ariaLabel ?? label}>
+<a
+  class={`${baseClasses} ${variantClasses[variant]}${className ? ` ${className}` : ''}`}
+  href={href}
+  aria-label={ariaLabel ?? label}
+>
   <span>{label}</span>
   {Icon && <Icon size={16} aria-hidden="true" focusable="false" />}
 </a>

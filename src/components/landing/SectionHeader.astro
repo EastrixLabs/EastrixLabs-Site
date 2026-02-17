@@ -7,12 +7,13 @@ interface Props {
 }
 
 const { eyebrow, title, description, align = 'left' } = Astro.props;
-const alignmentClass =
-  align === 'center' ? 'section-header--center' : 'section-header--left';
+const alignmentClass = align === 'center' ? 'mx-auto text-center' : '';
 ---
 
-<header class={`section-header ${alignmentClass}`}>
-  {eyebrow && <p class="section-eyebrow">{eyebrow}</p>}
-  <h2 class="section-title">{title}</h2>
-  {description && <p class="section-description">{description}</p>}
+<header class={`max-w-[70ch] ${alignmentClass}`}>
+  {eyebrow && <p class="m-0 text-[0.82rem] font-bold uppercase tracking-widest text-[#00726f]">{eyebrow}</p>}
+  <h2 class="mt-[0.7rem] font-['Syne','Segoe_UI',sans-serif] text-[1.8rem] leading-[1.08] tracking-[-0.02em] text-balance min-[621px]:text-[2.3rem]">
+    {title}
+  </h2>
+  {description && <p class="mt-[0.74rem] text-[1.03rem] text-[#56646f] text-pretty">{description}</p>}
 </header>

@@ -1,5 +1,5 @@
 ---
-import type { LucideIcon } from 'lucide-react';
+import type { LucideIcon } from "lucide-react";
 
 interface Props {
   title: string;
@@ -11,22 +11,53 @@ interface Props {
 }
 
 const { title, description, icon: Icon, outcomes, index, phase } = Astro.props;
-const itemIndex = String(index).padStart(2, '0');
+const itemIndex = String(index).padStart(2, "0");
+const stripToneClasses =
+  index % 2 === 0
+    ? "border-l-[#efb98e] bg-[#fff9f0]"
+    : "border-l-[#9dcfc8] bg-[#fffef8]";
 ---
 
-<article class="service-strip reveal-card">
-  <div class="service-strip__meta">
-    <p class="service-strip__index">{itemIndex}</p>
-    {phase && <p class="service-strip__phase">{phase}</p>}
+<article
+  class={`reveal-card grid items-start gap-[0.7rem] rounded-2xl border border-[#202d3830] border-l-4 p-[0.88rem] grid-cols-[56px_auto_1fr] max-[860px]:grid-cols-[48px_auto_1fr] max-[620px]:grid-cols-[auto] ${stripToneClasses}`}
+>
+  <div
+    class="text-center max-[620px]:flex max-[620px]:items-center max-[620px]:justify-between max-[620px]:text-left"
+  >
+    <p
+      class="m-0 font-['Syne','Segoe_UI',sans-serif] text-[1.18rem] leading-none"
+    >
+      {itemIndex}
+    </p>
+    {
+      phase && (
+        <p class="mt-[0.22rem] text-[0.67rem] font-bold uppercase tracking-[0.08em] text-[#33576a] max-[620px]:mt-0">
+          {phase}
+        </p>
+      )
+    }
   </div>
-  <div class="service-strip__icon-wrap" aria-hidden="true">
+  <div
+    class="inline-grid h-[2.1rem] w-[2.1rem] place-items-center rounded-[0.62rem] border border-[#1a232b25] bg-[#f5fbfa] text-[#19485d] max-[620px]:-mt-[0.1rem]"
+    aria-hidden="true"
+  >
     <Icon size={18} strokeWidth={1.9} aria-hidden="true" focusable="false" />
   </div>
-  <div class="service-strip__content">
-    <h3>{title}</h3>
-    <p>{description}</p>
-    <ul>
-      {outcomes.map((outcome) => <li>{outcome}</li>)}
+  <div>
+    <h3
+      class="m-0 font-['Syne','Segoe_UI',sans-serif] text-[1.12rem] leading-[1.1]"
+    >
+      {title}
+    </h3>
+    <p class="mt-[0.44rem] text-[0.91rem] text-[#56646f]">{description}</p>
+    <ul class="mt-[0.66rem] flex list-none flex-wrap gap-[0.45rem] p-0">
+      {
+        outcomes.map((outcome) => (
+          <li class="inline-flex min-h-[2.1rem] items-center rounded-full border border-[#1a232b28] bg-white px-[0.66rem] py-[0.2rem] text-[0.79rem] text-[#2d4351]">
+            {outcome}
+          </li>
+        ))
+      }
     </ul>
   </div>
 </article>
