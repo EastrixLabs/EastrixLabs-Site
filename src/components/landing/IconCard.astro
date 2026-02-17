@@ -11,14 +11,14 @@ interface Props {
 const { title, description, icon: Icon, meta } = Astro.props;
 ---
 
-<article class="reveal-card min-w-0 rounded-[1.05rem] border border-[#202d3830] bg-[linear-gradient(140deg,#ffffff_0%,#faf7ef_100%)] p-[1.06rem] transition-[transform,border-color,background-color] duration-220 ease-in-out hover:-translate-y-1 hover:border-[#20313f43] hover:bg-[linear-gradient(140deg,#ffffff_0%,#fcf8ef_100%)]">
+<article class="reveal-card min-w-0 rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-amber-50 p-4 transition-transform duration-200 ease-out hover:-translate-y-1 hover:border-slate-300">
   <div
-    class="inline-grid h-8 w-8 place-items-center rounded-[0.62rem] border border-[#1a232b25] bg-[linear-gradient(145deg,#d5f3ee_0%,#b9e6de_100%)] text-[#11374e]"
+    class="inline-grid h-8 w-8 place-items-center rounded-lg border border-teal-200 bg-gradient-to-br from-teal-100 to-teal-200 text-slate-800"
     aria-hidden="true"
   >
     <Icon size={20} strokeWidth={1.9} aria-hidden="true" focusable="false" />
   </div>
-  <h3 class="mt-[0.95rem] font-['Syne','Segoe_UI',sans-serif] text-[1.15rem] leading-[1.2] text-balance">{title}</h3>
-  {meta && <p class="mt-[0.33rem] text-[0.76rem] font-semibold uppercase tracking-[0.05em] text-[#2e5767]">{meta}</p>}
-  <p class="mt-[0.7rem] text-[0.92rem] text-[#56646f]">{description}</p>
+  <h3 class="mt-4 text-xl font-semibold leading-tight text-balance text-slate-900">{title}</h3>
+  {meta && <p class="mt-1 text-xs font-semibold uppercase tracking-wider text-teal-700">{meta}</p>}
+  <p class="mt-2 text-sm text-slate-600">{description}</p>
 </article>

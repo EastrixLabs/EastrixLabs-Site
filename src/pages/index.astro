@@ -19,7 +19,6 @@ import {
   Cpu,
   Database,
   Fingerprint,
-  Globe,
   Handshake,
   Layers3,
   Lightbulb,
@@ -28,7 +27,6 @@ import {
   ShieldCheck,
   Sparkles,
   Target,
-  TimerReset,
   TrendingUp,
   UsersRound,
   Workflow,
@@ -59,12 +57,6 @@ type ServicePanel = {
   icon: LucideIcon;
   phase: string;
   outcomes: string[];
-};
-
-type JourneyStep = {
-  title: string;
-  detail: string;
-  icon: LucideIcon;
 };
 
 type Testimonial = {
@@ -252,40 +244,6 @@ const sponsors = [
   "Monarch Seed",
 ];
 
-const heroPillars = [
-  {
-    icon: Compass,
-    label: "Roadmaps built from market signals, not guesswork.",
-  },
-  {
-    icon: TimerReset,
-    label: "Tight sprint loops that keep launches moving.",
-  },
-  {
-    icon: TrendingUp,
-    label: "Growth systems tuned for activation and expansion.",
-  },
-];
-
-const journeySteps: JourneyStep[] = [
-  {
-    title: "Discovery Sprint",
-    detail: "Clarify goals, edge cases, and decision constraints before build.",
-    icon: Lightbulb,
-  },
-  {
-    title: "Build + QA Cycle",
-    detail: "Ship design and engineering in one coordinated release loop.",
-    icon: Rocket,
-  },
-  {
-    title: "Launch + Growth Loop",
-    detail:
-      "Instrument analytics and scale the highest-leverage product paths.",
-    icon: Globe,
-  },
-];
-
 const testimonials: Testimonial[] = [
   {
     quote:
@@ -349,49 +307,38 @@ const testimonialColumns = [0, 1, 2].map((columnIndex) =>
   ),
 );
 
-const contentSectionClass = "mt-[clamp(2.7rem,7vw,5.2rem)] scroll-mt-[7.5rem]";
+const contentSectionClass = "mt-16 scroll-mt-28";
 const navLinkClass =
-  "inline-flex min-h-[2.7rem] w-full items-center justify-start rounded-[0.78rem] px-[0.66rem] py-[0.42rem] text-[0.87rem] font-semibold text-[#56646f] no-underline transition-[color,background-color] duration-[180ms] ease-in-out hover:bg-[#ffffffbd] hover:text-[#1a232b] min-[861px]:min-h-11 min-[861px]:w-auto min-[861px]:justify-center min-[861px]:rounded-full min-[861px]:px-[0.7rem] min-[861px]:py-[0.4rem]";
+  "inline-flex min-h-11 w-full items-center justify-start rounded-xl px-3 py-2 text-sm font-semibold text-slate-600 no-underline transition hover:bg-white hover:text-slate-900 md:w-auto md:justify-center md:rounded-full";
 const testimonialColumnClass =
-  "relative h-[22rem] overflow-hidden rounded-2xl border border-[#202d3830] bg-[#fffef8] before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:z-[1] before:h-[52px] before:bg-[linear-gradient(to_bottom,#fffef8,#fffef800)] before:content-[''] after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:z-[1] after:h-[52px] after:bg-[linear-gradient(to_top,#fffef8,#fffef800)] after:content-[''] max-[860px]:h-[18.5rem] max-[620px]:h-auto";
+  "testimonial-column relative h-80 overflow-hidden rounded-2xl border border-slate-200 bg-amber-50 md:h-96";
 ---
 
 <MainLayout
   title="Eastrix Labs | SaaS Product Studio"
   description="Eastrix Labs builds ambitious SaaS products with strategy, design, engineering, and growth execution."
 >
-  <a
-    class="fixed left-4 top-24 z-30 rounded-full bg-[#1a232b] px-4 py-[0.62rem] text-[0.86rem] text-white no-underline transition-[top] duration-220 ease-in-out focus-visible:top-4"
-    href="#main-content"
-  >
-    Skip to Main Content
-  </a>
-  <div class="mx-auto max-w-7xl p-[clamp(0.9rem,2.2vw,2rem)]">
+  <div class="mx-auto max-w-7xl px-4 pb-8 pt-4 sm:px-6 lg:px-8">
     <header
-      class="site-header group sticky top-4 z-20 grid grid-cols-[1fr_auto] items-center gap-[0.8rem] rounded-[1.1rem] border border-[#202d3830] bg-[#fffdf6e0] px-[0.88rem] py-[0.72rem] backdrop-blur-[10px] min-[861px]:grid-cols-[auto_1fr_auto]"
+      class="site-header sticky top-4 z-20 flex flex-wrap items-center gap-3 rounded-2xl border border-slate-300/40 bg-amber-50/90 p-3 backdrop-blur"
       id="top"
-      data-open="false"
     >
       <a
-        class="inline-flex min-w-fit items-center gap-[0.65rem] text-inherit no-underline"
+        class="inline-flex min-w-fit items-center gap-3 text-inherit no-underline"
         href="#top"
         aria-label="Eastrix Labs Home"
       >
         <span
-          class="grid h-[2.05rem] w-[2.05rem] place-items-center rounded-[0.62rem] border border-[#1a232b2a] bg-[linear-gradient(125deg,#1a232b_0%,#374a5a_100%)] font-['Syne','Segoe_UI',sans-serif] text-[0.8rem] font-bold tracking-widest text-white"
+          class="grid h-8 w-8 place-items-center rounded-lg border border-slate-300 bg-slate-900 text-sm font-bold tracking-wide text-white"
           aria-hidden="true"
         >
           EL
         </span>
-        <span
-          class="font-['Syne','Segoe_UI',sans-serif] text-[0.98rem] font-bold tracking-[0.02em] min-[621px]:text-[1.08rem]"
-        >
-          Eastrix Labs
-        </span>
+        <span class="text-base font-semibold tracking-wide">Eastrix Labs</span>
       </a>
 
       <nav
-        class="site-nav col-span-full mt-[0.12rem] hidden flex-col items-stretch gap-[0.35rem] border-t border-[#1a232b20] pt-[0.72rem] group-data-[open=true]:flex min-[861px]:col-auto min-[861px]:mt-0 min-[861px]:inline-flex min-[861px]:flex-row min-[861px]:items-center min-[861px]:justify-center min-[861px]:gap-[clamp(0.2rem,0.85vw,0.86rem)] min-[861px]:border-t-0 min-[861px]:p-0"
+        class="site-nav order-3 mt-1 hidden w-full flex-col items-stretch gap-2 border-t border-slate-200 pt-3 md:order-2 md:mt-0 md:flex md:min-w-0 md:flex-1 md:flex-row md:items-center md:justify-center md:gap-1 md:border-t-0 md:p-0"
         id="site-navigation"
         aria-label="Primary"
       >
@@ -404,36 +351,26 @@ const testimonialColumnClass =
           href="#contact"
           label="Book A Demo"
           icon={ArrowRight}
-          className="mt-[0.2rem] min-[861px]:hidden"
+          className="mt-2 w-full justify-center md:hidden"
         />
       </nav>
 
-      <div class="inline-flex items-center gap-[0.45rem]">
+      <div class="order-2 ml-auto inline-flex items-center gap-2 md:order-3 md:ml-0">
         <CtaLink
           href="#contact"
           label="Book A Demo"
           icon={ArrowRight}
-          className="hidden min-[861px]:inline-flex"
+          className="hidden md:inline-flex"
         />
         <button
-          class="menu-toggle inline-flex h-11 w-11 items-center justify-center rounded-[0.8rem] border border-[#1a232b2f] bg-[#fffdf6] text-[#1a232b] min-[861px]:hidden"
+          class="menu-toggle inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-900 md:hidden"
           type="button"
           aria-expanded="false"
           aria-controls="site-navigation"
           aria-label="Toggle menu"
         >
-          <Menu
-            className="hidden group-data-[open=false]:inline-flex"
-            size={18}
-            aria-hidden="true"
-            focusable="false"
-          />
-          <ChevronDown
-            className="hidden group-data-[open=true]:inline-flex"
-            size={18}
-            aria-hidden="true"
-            focusable="false"
-          />
+          <Menu className="menu-toggle__icon menu-toggle__icon--closed" size={18} aria-hidden="true" focusable="false" />
+          <ChevronDown className="menu-toggle__icon menu-toggle__icon--open" size={18} aria-hidden="true" focusable="false" />
           <span class="sr-only">Toggle menu</span>
         </button>
       </div>
@@ -441,124 +378,47 @@ const testimonialColumnClass =
 
     <main id="main-content">
       <section
-        class="relative mt-[clamp(1rem,2.5vw,1.6rem)] flex items-center overflow-hidden rounded-[clamp(1.2rem,2.3vw,2rem)] border border-[#202d3830] bg-[linear-gradient(168deg,#fffef9_0%,#f6efe2_52%,#ece8dd_100%)] p-[clamp(1.06rem,4vw,2.65rem)] before:pointer-events-none before:absolute before:inset-0 before:bg-[linear-gradient(#ffffff8f_1px,transparent_1px),linear-gradient(90deg,#ffffff8f_1px,transparent_1px)] before:bg-size-[56px_56px] before:opacity-40 before:content-['']"
+        class="relative mt-6 overflow-hidden rounded-3xl border border-slate-300/40 bg-[#f3eee2] px-5 py-12 sm:px-8 sm:py-16 lg:px-10 lg:py-20"
       >
         <div
-          class="pointer-events-none absolute right-9 top-18 h-[clamp(180px,25vw,320px)] w-[clamp(180px,25vw,320px)] rounded-full bg-[radial-gradient(circle,#ffb77f_0%,#ffb77f00_68%)] blur-[14px] animate-[float-orb_8s_ease-in-out_infinite]"
+          class="pointer-events-none absolute left-1/2 top-16 h-64 w-64 -translate-x-1/2 rounded-full bg-amber-200/40 blur-3xl hero-orb"
           aria-hidden="true"
         >
         </div>
         <div
-          class="pointer-events-none absolute -bottom-20 left-11 h-[clamp(140px,22vw,260px)] w-[clamp(140px,22vw,260px)] rounded-full bg-[radial-gradient(circle,#7ec8c2_0%,#7ec8c200_64%)] blur-[14px] animate-[float-orb_8s_ease-in-out_infinite] [animation-delay:1.2s]"
+          class="pointer-events-none absolute -left-10 top-1/3 h-24 w-24 rounded-full bg-orange-200/60 blur-xl hero-orb hero-orb--delay"
           aria-hidden="true"
         >
         </div>
-        <div
-          class="relative z-1 grid w-full gap-[clamp(1.1rem,2.8vw,2rem)] min-[980px]:grid-cols-[minmax(0,1.32fr)_minmax(300px,0.68fr)] min-[980px]:items-center"
-        >
-          <div class="min-w-0">
-            <p
-              class="reveal reveal--1 m-0 inline-flex w-fit items-center gap-[0.46rem] rounded-full border border-[#2033411f] bg-[#fff8ec] px-[0.74rem] py-[0.42rem] text-[0.8rem] font-semibold text-[#284354]"
-            >
-              <Sparkles size={16} aria-hidden="true" focusable="false" />
-              <span>Purpose-built for category-defining SaaS products</span>
-            </p>
-            <h1
-              class="reveal reveal--2 mt-[0.95rem] max-w-[15ch] font-['Syne','Segoe_UI',sans-serif] text-[2.35rem] leading-[0.95] tracking-[-0.03em] text-balance min-[621px]:text-[3.2rem] min-[861px]:text-[4.15rem] min-[980px]:text-[4.65rem]"
-            >
-              Raising SaaS from the East
-            </h1>
-            <p
-              class="reveal reveal--3 mt-[0.95rem] max-w-[58ch] text-[1.06rem] text-[#56646f] text-pretty"
-            >
-              Eastrix Labs helps founders and operators turn SaaS concepts into
-              durable products with focused execution, clean architecture, and
-              measurable growth momentum.
-            </p>
-            <ul
-              class="reveal reveal--4 mt-[1.2rem] grid max-w-[58ch] list-none gap-[0.58rem] p-0"
-              aria-label="How Eastrix Labs operates"
-            >
-              {
-                heroPillars.map((pillar) => {
-                  const PillarIcon = pillar.icon;
-                  return (
-                    <li class="inline-flex min-h-[2.68rem] items-center gap-[0.45rem] rounded-full border border-[#1a232b2a] bg-[#fffef8] px-[0.74rem] py-[0.35rem] text-[0.87rem] font-semibold text-[#2f4350]">
-                      <PillarIcon
-                        size={15}
-                        aria-hidden="true"
-                        focusable="false"
-                      />
-                      <span>{pillar.label}</span>
-                    </li>
-                  );
-                })
-              }
-            </ul>
-            <div
-              class="reveal reveal--5 mt-5 flex flex-wrap items-center gap-[0.72rem]"
-            >
-              <CtaLink href="#contact" label="Book A Demo" icon={ArrowRight} />
-              <CtaLink
-                href="#services"
-                label="See Our Process"
-                variant="ghost"
-                icon={Rocket}
-              />
-            </div>
-          </div>
-
-          <aside
-            class="reveal reveal--6 self-center rounded-2xl border border-[#1a232b22] bg-[#fffef8cc] p-3 min-[621px]:p-[0.9rem]"
-            aria-label="Delivery approach"
+        <div class="pointer-events-none absolute right-10 top-1/2 h-20 w-20 -translate-y-1/2 rounded-full bg-teal-200/70 blur-xl" aria-hidden="true">
+        </div>
+        <div class="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center text-center">
+          <p
+            class="reveal reveal--1 m-0 inline-flex w-fit items-center gap-2 rounded-full border border-slate-300 bg-white/85 px-3 py-1 text-xs font-semibold text-slate-700"
           >
-            <p
-              class="m-0 text-[0.78rem] font-bold uppercase tracking-[0.09em] text-[#00726f]"
-            >
-              Delivery Engine
-            </p>
-            <h2
-              class="mt-[0.55rem] font-['Syne','Segoe_UI',sans-serif] text-[1.26rem] leading-[1.14] tracking-[-0.01em] text-balance"
-            >
-              Focused execution from concept to scalable launch.
-            </h2>
-            <ol class="mt-[0.95rem] grid list-none gap-[0.6rem] p-0">
-              {
-                journeySteps.map((step) => {
-                  const StepIcon = step.icon;
-                  return (
-                    <li class="rounded-[0.82rem] border border-[#1a232b1f] bg-[#ffffffd6] p-[0.62rem]">
-                      <div class="grid grid-cols-[auto_1fr] items-start gap-[0.48rem]">
-                        <span
-                          class="inline-grid h-7 w-7 place-items-center rounded-[0.56rem] border border-[#1a232b22] bg-[#f3fbfa] text-[#204a60]"
-                          aria-hidden="true"
-                        >
-                          <StepIcon
-                            size={15}
-                            aria-hidden="true"
-                            focusable="false"
-                          />
-                        </span>
-                        <div>
-                          <h3 class="m-0 font-['Syne','Segoe_UI',sans-serif] text-[0.95rem] leading-[1.2]">
-                            {step.title}
-                          </h3>
-                          <p class="mt-[0.26rem] text-[0.83rem] text-[#56646f]">
-                            {step.detail}
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                  );
-                })
-              }
-            </ol>
-            <p
-              class="mt-[0.9rem] rounded-[0.78rem] border border-[#1a232b22] bg-[#fffef9] px-[0.72rem] py-[0.6rem] text-[0.82rem] font-semibold text-[#2e4755]"
-            >
-              26 launches · 94% on-time milestones · $48M+ ARR supported
-            </p>
-          </aside>
+            <Sparkles size={16} aria-hidden="true" focusable="false" />
+            <span>SaaS product studio based in the East</span>
+          </p>
+          <h1
+            class="hero-title reveal reveal--2 mt-6 max-w-[11ch] text-balance text-[clamp(3.2rem,10vw,8rem)] leading-[0.9] tracking-tight text-slate-900"
+          >
+            Raising SaaS from the East
+          </h1>
+          <div class="reveal reveal--3 mt-8 flex flex-wrap justify-center gap-3">
+            <CtaLink href="#contact" label="Book A Demo" icon={ArrowRight} />
+            <CtaLink
+              href="#projects"
+              label="Browse Projects"
+              variant="ghost"
+              icon={Rocket}
+            />
+          </div>
+          <p
+            class="reveal reveal--4 mt-10 max-w-2xl text-sm text-slate-600 sm:text-base"
+          >
+            We build, launch, and scale focused SaaS products with strategy,
+            design, and engineering that move fast without losing quality.
+          </p>
         </div>
       </section>
 
@@ -581,7 +441,7 @@ const testimonialColumnClass =
           title="A Structured SaaS Delivery System"
           description="Services run as phases with explicit deliverables so teams always know what is shipping and why it matters."
         />
-        <div class="mt-[1.4rem] grid gap-[0.82rem]">
+        <div class="mt-6 grid gap-4">
           {
             services.map((service, index) => (
               <ServiceStrip {...service} index={index + 1} />
@@ -599,21 +459,17 @@ const testimonialColumnClass =
         />
 
         <div class="mt-6 grid gap-3">
-          <p
-            class="m-0 text-xs font-bold uppercase tracking-[0.08em] text-[#36576a]"
-          >
-            Partners
-          </p>
+          <p class="m-0 text-xs font-semibold uppercase tracking-wider text-slate-600">Partners</p>
           <div
-            class="relative overflow-hidden rounded-2xl border border-[#202d3830] bg-[#f6f1e4] py-2"
+            class="relative overflow-hidden rounded-2xl border border-slate-300/40 bg-amber-100/60 py-2"
             aria-label="Partner organizations"
           >
             <div
-              class="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-linear-to-l from-[#f6f1e4] to-transparent"
+              class="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-amber-100 to-transparent"
             >
             </div>
             <div
-              class="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-[#f6f1e4] to-transparent"
+              class="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-amber-100 to-transparent"
             >
             </div>
             <ul
@@ -622,7 +478,7 @@ const testimonialColumnClass =
               {
                 [...partners, ...partners].map((partner, index) => (
                   <li
-                    class="m-0 inline-flex min-h-[2.2rem] items-center gap-1.5 whitespace-nowrap rounded-full border border-[#1a232b22] bg-[#fffef9] px-3 py-1.5 text-[0.83rem] text-[#24323e]"
+                    class="m-0 inline-flex min-h-9 items-center gap-2 whitespace-nowrap rounded-full border border-slate-300 bg-white px-3 py-1 text-sm text-slate-700"
                     aria-hidden={index >= partners.length}
                   >
                     <Handshake size={15} aria-hidden="true" focusable="false" />
@@ -633,21 +489,17 @@ const testimonialColumnClass =
             </ul>
           </div>
 
-          <p
-            class="m-0 text-xs font-bold uppercase tracking-[0.08em] text-[#36576a]"
-          >
-            Sponsors
-          </p>
+          <p class="m-0 text-xs font-semibold uppercase tracking-wider text-slate-600">Sponsors</p>
           <div
-            class="relative overflow-hidden rounded-2xl border border-[#202d3830] bg-[#f6f1e4] py-2"
+            class="relative overflow-hidden rounded-2xl border border-slate-300/40 bg-amber-100/60 py-2"
             aria-label="Sponsor organizations"
           >
             <div
-              class="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-linear-to-l from-[#f6f1e4] to-transparent"
+              class="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-amber-100 to-transparent"
             >
             </div>
             <div
-              class="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-[#f6f1e4] to-transparent"
+              class="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-amber-100 to-transparent"
             >
             </div>
             <ul
@@ -656,7 +508,7 @@ const testimonialColumnClass =
               {
                 [...sponsors, ...sponsors].map((sponsor, index) => (
                   <li
-                    class="m-0 inline-flex min-h-[2.2rem] items-center gap-1.5 whitespace-nowrap rounded-full border border-[#1a232b22] bg-[#fffef9] px-3 py-1.5 text-[0.83rem] text-[#24323e]"
+                    class="m-0 inline-flex min-h-9 items-center gap-2 whitespace-nowrap rounded-full border border-slate-300 bg-white px-3 py-1 text-sm text-slate-700"
                     aria-hidden={index >= sponsors.length}
                   >
                     <Handshake size={15} aria-hidden="true" focusable="false" />
@@ -668,26 +520,22 @@ const testimonialColumnClass =
           </div>
         </div>
 
-        <div class="mt-[1.05rem]">
-          <p
-            class="m-0 text-xs font-bold uppercase tracking-[0.08em] text-[#36576a]"
-          >
-            Testimonials
-          </p>
+        <div class="mt-6">
+          <p class="m-0 text-xs font-semibold uppercase tracking-wider text-slate-600">Testimonials</p>
           <div
-            class="mt-[0.52rem] grid gap-[0.7rem] grid-cols-3 max-[1040px]:grid-cols-2 max-[860px]:grid-cols-1"
+            class="mt-3 grid gap-3 md:grid-cols-2 xl:grid-cols-3"
             aria-label="Client testimonials"
           >
             {
               testimonialColumns.map((column, index) => {
                 const directionClass =
                   index === 1
-                    ? "animate-[testimonial-down_30s_linear_infinite]"
-                    : "animate-[testimonial-up_26s_linear_infinite]";
+                    ? "testimonial-track--down"
+                    : "testimonial-track--up";
                 return (
                   <div class={testimonialColumnClass}>
                     <div
-                      class={`relative z-0 grid gap-[0.65rem] p-[0.7rem] max-[620px]:animate-none ${directionClass}`}
+                      class={`testimonial-track relative z-0 grid gap-3 p-3 ${directionClass}`}
                     >
                       {column.map((testimonial) => (
                         <TestimonialTile {...testimonial} />
@@ -710,46 +558,42 @@ const testimonialColumnClass =
           title="Senior Operators Across Product, Engineering, and Growth"
           description="You work directly with experienced builders who stay close to strategy and execution from start to finish."
         />
-        <div
-          class="mt-[1.4rem] grid gap-[0.88rem] grid-cols-[repeat(auto-fit,minmax(210px,1fr))] max-[620px]:grid-cols-1"
-        >
+        <div class="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {team.map((member) => <IconCard {...member} />)}
         </div>
       </section>
 
       <section
         id="contact"
-        class={`${contentSectionClass} mb-[clamp(2rem,4vw,4rem)]`}
+        class={`${contentSectionClass} mb-16`}
       >
         <SectionHeader
           eyebrow="Contact Us"
           title="Book a Demo and Plan Your Next SaaS Milestone"
-          description="Share your goals, timeline, and product scope. We will map the next execution steps with your team."
+          description="Share your goals and product scope. We will map the next execution steps with your team."
         />
-        <div
-          class="mt-6 grid items-start gap-4 lg:grid-cols-[minmax(240px,0.8fr)_minmax(0,1.2fr)]"
-        >
+        <div class="mt-6 grid items-start gap-4 lg:grid-cols-5">
           <article
-            class="reveal-card rounded-2xl border border-[#202d3830] bg-[#fffef8] p-4"
+            class="reveal-card rounded-2xl border border-slate-300/40 bg-white/80 p-4 lg:col-span-2"
           >
-            <h3 class="m-0 font-['Syne','Segoe_UI',sans-serif] text-[1.2rem]">
+            <h3 class="m-0 text-xl font-semibold text-slate-900">
               What happens next
             </h3>
             <ul class="mt-4 grid list-none gap-3 p-0">
-              <li class="flex items-start gap-2 text-[#56646f]">
+              <li class="flex items-start gap-2 text-sm text-slate-600">
                 <Lightbulb size={16} aria-hidden="true" focusable="false" />
                 <span
                   >We review your product goals, constraints, and delivery
                   timeline.</span
                 >
               </li>
-              <li class="flex items-start gap-2 text-[#56646f]">
+              <li class="flex items-start gap-2 text-sm text-slate-600">
                 <Compass size={16} aria-hidden="true" focusable="false" />
                 <span
                   >You receive a scoped execution plan and milestone sequence.</span
                 >
               </li>
-              <li class="flex items-start gap-2 text-[#56646f]">
+              <li class="flex items-start gap-2 text-sm text-slate-600">
                 <Rocket size={16} aria-hidden="true" focusable="false" />
                 <span
                   >Kickoff begins with a focused sprint and measurable launch
@@ -759,40 +603,42 @@ const testimonialColumnClass =
             </ul>
           </article>
 
-          <DemoContactForm client:load />
+          <div class="lg:col-span-3">
+            <DemoContactForm client:load />
+          </div>
         </div>
       </section>
     </main>
 
     <footer
-      class="site-footer mt-4 flex flex-wrap justify-between gap-2 border-t border-[#1a232b26] pb-[0.4rem] pt-[1.3rem]"
+      class="site-footer mt-4 flex flex-wrap justify-between gap-2 border-t border-slate-300/60 pb-2 pt-5"
     >
-      <p class="m-0 text-[0.83rem] text-[#51606a]">
+      <p class="m-0 text-sm text-slate-600">
         © {new Date().getFullYear()} Eastrix Labs | All rights reserved.
       </p>
-      <p class="m-0 text-[0.83rem] text-[#51606a]">
-        Raising SaaS from the East
+      <p class="m-0 text-sm text-slate-600">
+        Raising SaaS from the East ✨
       </p>
     </footer>
   </div>
 
   <script is:inline>
     (() => {
-      const header = document.querySelector(".site-header");
       const menuButton = document.querySelector(".menu-toggle");
       const nav = document.getElementById("site-navigation");
+      const mediaQuery = window.matchMedia("(min-width: 768px)");
 
-      if (!header || !menuButton || !nav) return;
+      if (!menuButton || !nav) return;
 
       const setOpen = (isOpen) => {
-        header.setAttribute("data-open", isOpen ? "true" : "false");
         menuButton.setAttribute("aria-expanded", String(isOpen));
+        nav.classList.toggle("hidden", !isOpen);
       };
 
       setOpen(false);
 
       menuButton.addEventListener("click", () => {
-        const isOpen = header.getAttribute("data-open") === "true";
+        const isOpen = menuButton.getAttribute("aria-expanded") === "true";
         setOpen(!isOpen);
       });
 
@@ -800,7 +646,6 @@ const testimonialColumnClass =
         link.addEventListener("click", () => setOpen(false));
       });
 
-      const mediaQuery = window.matchMedia("(min-width: 861px)");
       const handleChange = (event) => {
         if (event.matches) setOpen(false);
       };

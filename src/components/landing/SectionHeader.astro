@@ -10,10 +10,10 @@ const { eyebrow, title, description, align = 'left' } = Astro.props;
 const alignmentClass = align === 'center' ? 'mx-auto text-center' : '';
 ---
 
-<header class={`max-w-[70ch] ${alignmentClass}`}>
-  {eyebrow && <p class="m-0 text-[0.82rem] font-bold uppercase tracking-widest text-[#00726f]">{eyebrow}</p>}
-  <h2 class="mt-[0.7rem] font-['Syne','Segoe_UI',sans-serif] text-[1.8rem] leading-[1.08] tracking-[-0.02em] text-balance min-[621px]:text-[2.3rem]">
+<header class={`max-w-3xl ${alignmentClass}`}>
+  {eyebrow && <p class="m-0 text-xs font-semibold uppercase tracking-wider text-teal-700">{eyebrow}</p>}
+  <h2 class="mt-2 text-3xl font-semibold leading-tight text-balance text-slate-900 sm:text-4xl">
     {title}
   </h2>
-  {description && <p class="mt-[0.74rem] text-[1.03rem] text-[#56646f] text-pretty">{description}</p>}
+  {description && <p class="mt-3 text-base text-slate-600 text-pretty">{description}</p>}
 </header>

@@ -2,10 +2,6 @@
   color-scheme: light;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   margin: 0;
   min-height: 100vh;
@@ -14,7 +10,7 @@ body {
     radial-gradient(circle at 92% 84%, #bfe8e4 0%, #bfe8e400 36%),
     #f8f4e8;
   color: #1a232b;
-  font-family: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+  font-family: "Syne", "Segoe UI", sans-serif;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -30,6 +26,18 @@ body {
 :where(a, button, input, select, textarea):focus-visible {
   outline: 2px solid #e54d2e;
   outline-offset: 3px;
+}
+
+.menu-toggle__icon {
+  display: none;
+}
+
+.menu-toggle[aria-expanded="false"] .menu-toggle__icon--closed {
+  display: inline-flex;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__icon--open {
+  display: inline-flex;
 }
 
 .reveal {
@@ -88,6 +96,19 @@ body {
   }
 }
 
+.hero-orb {
+  animation: float-orb 8s ease-in-out infinite;
+}
+
+.hero-orb--delay {
+  animation-delay: 1.2s;
+}
+
+.hero-title {
+  font-family: "Fraunces", "Iowan Old Style", "Palatino Linotype", serif;
+  font-weight: 500;
+}
+
 @keyframes testimonial-up {
   0% {
     transform: translateY(0);
@@ -106,16 +127,57 @@ body {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+.testimonial-column::before,
+.testimonial-column::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3rem;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.testimonial-column::before {
+  top: 0;
+  background: linear-gradient(to bottom, #fffef8, transparent);
+}
+
+.testimonial-column::after {
+  bottom: 0;
+  background: linear-gradient(to top, #fffef8, transparent);
+}
+
+.testimonial-track {
+  animation: testimonial-up 26s linear infinite;
+}
+
+.testimonial-track--down {
+  animation-name: testimonial-down;
+  animation-duration: 30s;
+}
+
+@media (max-width: 640px) {
+  .testimonial-column {
+    height: auto;
   }
 
+  .testimonial-track {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 1ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 1ms !important;
+  }
+
+  .hero-orb,
+  .testimonial-track {
+    animation: none !important;
   }
 }

@@ -1,5 +1,6 @@
 ---
 import type { LucideIcon } from 'lucide-react';
+import { cn } from "@/lib/utils";
 
 interface Props {
   href: string;
@@ -13,18 +14,18 @@ interface Props {
 const { href, label, variant = 'primary', icon: Icon, ariaLabel, className } = Astro.props;
 
 const baseClasses =
-  'inline-flex min-h-11 items-center justify-center gap-[0.45rem] rounded-full border border-transparent px-4 py-[0.74rem] text-[0.88rem] font-bold no-underline transition-[transform,color,background-color,border-color] duration-[220ms] ease-in-out';
+  'inline-flex min-h-11 items-center justify-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold no-underline transition hover:-translate-y-0.5';
 
 const variantClasses: Record<NonNullable<Props['variant']>, string> = {
   primary:
-    'bg-[linear-gradient(120deg,#e54d2e_0%,#c7391c_100%)] text-white hover:-translate-y-0.5 hover:bg-[linear-gradient(120deg,#e45739_0%,#c7391c_100%)]',
+    'border-orange-700 bg-orange-600 text-white hover:bg-orange-500',
   ghost:
-    'border-[#1a232b33] bg-[#fffdf6] text-[#1a232b] hover:-translate-y-0.5 hover:border-[#1a232b4c] hover:bg-white',
+    'border-slate-300 bg-white text-slate-800 hover:border-slate-400 hover:bg-slate-50',
 };
 ---
 
 <a
-  class={`${baseClasses} ${variantClasses[variant]}${className ? ` ${className}` : ''}`}
+  class={cn(baseClasses, variantClasses[variant], className)}
   href={href}
   aria-label={ariaLabel ?? label}
 >

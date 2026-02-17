@@ -20,26 +20,26 @@ const sizeClassMap: Record<NonNullable<Props['size']>, string> = {
 };
 
 const baseClasses =
-  'reveal-card min-w-0 rounded-2xl border border-[#202d3830] bg-[linear-gradient(152deg,#fffef9_0%,#f8f2e5_100%)] p-4 transition-transform duration-200 ease-out hover:-translate-y-0.5 hover:border-[#20313f43]';
+  'reveal-card min-w-0 rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-amber-50 p-4 transition-transform duration-200 ease-out hover:-translate-y-0.5 hover:border-slate-300';
 
 const sizeClasses = sizeClassMap[size];
 ---
 
 <article class={`${baseClasses} ${sizeClasses}`}>
   <div
-    class="inline-grid h-[2.05rem] w-[2.05rem] place-items-center rounded-[0.62rem] border border-[#1a232b25] bg-[linear-gradient(145deg,#d5f3ee_0%,#b9e6de_100%)] text-[#11374e]"
+    class="inline-grid h-8 w-8 place-items-center rounded-lg border border-teal-200 bg-gradient-to-br from-teal-100 to-teal-200 text-slate-800"
     aria-hidden="true"
   >
     <Icon size={20} strokeWidth={1.9} aria-hidden="true" focusable="false" />
   </div>
-  <h3 class="mt-3.5 font-['Syne','Segoe_UI',sans-serif] text-[1.17rem] leading-[1.16] text-balance">{title}</h3>
-  {meta && <p class="mt-1 text-[0.76rem] font-semibold uppercase tracking-[0.05em] text-[#2e5767]">{meta}</p>}
-  <p class="mt-2.5 text-[0.95rem] text-[#56646f]">{description}</p>
+  <h3 class="mt-4 text-xl font-semibold leading-tight text-balance text-slate-900">{title}</h3>
+  {meta && <p class="mt-1 text-xs font-semibold uppercase tracking-wider text-teal-700">{meta}</p>}
+  <p class="mt-2 text-sm text-slate-600">{description}</p>
   {highlights.length > 0 && (
-    <ul class="mt-3 flex list-none flex-wrap gap-1.5 p-0">
+    <ul class="mt-3 flex list-none flex-wrap gap-2 p-0">
       {
         highlights.map((highlight) => (
-          <li class="inline-flex min-h-[2.04rem] items-center rounded-full border border-[#1a232b28] bg-white px-2.5 py-1 text-xs text-[#2d4351]">
+          <li class="inline-flex min-h-8 items-center rounded-full border border-slate-300 bg-white px-3 py-1 text-xs text-slate-700">
             {highlight}
           </li>
         ))
