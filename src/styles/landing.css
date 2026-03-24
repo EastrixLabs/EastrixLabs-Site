@@ -7,8 +7,7 @@ body {
   min-height: 100vh;
   background:
     radial-gradient(circle at 10% 8%, #ffe8ba 0%, #ffe8ba00 40%),
-    radial-gradient(circle at 92% 84%, #bfe8e4 0%, #bfe8e400 36%),
-    #f8f4e8;
+    radial-gradient(circle at 92% 84%, #bfe8e4 0%, #bfe8e400 36%), #f8f4e8;
   color: #1a232b;
   font-family: "Syne", "Segoe UI", sans-serif;
   line-height: 1.55;
@@ -140,12 +139,12 @@ body {
 
 .testimonial-column::before {
   top: 0;
-  background: linear-gradient(to bottom, #fffef8, transparent);
+  background: linear-gradient(to bottom, #f8f4e8, transparent);
 }
 
 .testimonial-column::after {
   bottom: 0;
-  background: linear-gradient(to top, #fffef8, transparent);
+  background: linear-gradient(to top, #f8f4e8, transparent);
 }
 
 .testimonial-track {
@@ -168,16 +167,21 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *:not(.animate-marquee-left):not(.animate-marquee-right):not(
+      .testimonial-track
+    ),
+  *:not(.animate-marquee-left):not(.animate-marquee-right):not(
+      .testimonial-track
+    )::before,
+  *:not(.animate-marquee-left):not(.animate-marquee-right):not(
+      .testimonial-track
+    )::after {
     animation-duration: 1ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 1ms !important;
   }
 
-  .hero-orb,
-  .testimonial-track {
+  .hero-orb {
     animation: none !important;
   }
 }
