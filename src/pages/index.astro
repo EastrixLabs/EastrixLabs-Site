@@ -18,10 +18,14 @@ import {
   Compass,
   Cpu,
   Database,
+  Facebook,
   Fingerprint,
+  Globe,
   Handshake,
+  Instagram,
   Layers3,
   Lightbulb,
+  Linkedin,
   Menu,
   Rocket,
   ShieldCheck,
@@ -63,6 +67,12 @@ type Testimonial = {
   quote: string;
   author: string;
   role: string;
+};
+
+type FooterLink = {
+  label: string;
+  href: string;
+  icon: LucideIcon;
 };
 
 const projects: ProjectPanel[] = [
@@ -307,11 +317,34 @@ const testimonialColumns = [0, 1, 2].map((columnIndex) =>
   ),
 );
 
+const footerLinks: FooterLink[] = [
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/eastrixlabs/",
+    icon: Linkedin,
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/eastrixlabs/",
+    icon: Instagram,
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/eastrixlabs/",
+    icon: Facebook,
+  },
+  {
+    label: "Website",
+    href: "/",
+    icon: Globe,
+  },
+];
+
 const contentSectionClass = "mt-16 scroll-mt-28";
 const navLinkClass =
   "inline-flex min-h-11 w-full items-center justify-start rounded-xl px-3 py-2 text-sm font-semibold text-slate-600 no-underline transition hover:bg-white hover:text-slate-900 md:w-auto md:justify-center md:rounded-full";
 const testimonialColumnClass =
-  "testimonial-column relative h-80 overflow-hidden rounded-2xl border border-slate-200 bg-amber-50 md:h-96";
+  "testimonial-column relative h-80 overflow-hidden md:h-96";
 ---
 
 <MainLayout
@@ -378,7 +411,7 @@ const testimonialColumnClass =
 
     <main id="main-content">
       <section
-        class="relative mt-6 overflow-hidden rounded-3xl border border-slate-300/40 bg-[#f3eee2] px-5 py-12 sm:px-8 sm:py-16 lg:px-10 lg:py-20"
+        class="relative mt-6 px-5 py-12 sm:px-8 sm:py-16 lg:px-10 lg:py-20"
       >
         <div
           class="pointer-events-none absolute left-1/2 top-16 h-64 w-64 -translate-x-1/2 rounded-full bg-amber-200/40 blur-3xl hero-orb"
@@ -461,15 +494,15 @@ const testimonialColumnClass =
         <div class="mt-6 grid gap-3">
           <p class="m-0 text-xs font-semibold uppercase tracking-wider text-slate-600">Partners</p>
           <div
-            class="relative overflow-hidden rounded-2xl border border-slate-300/40 bg-amber-100/60 py-2"
+            class="relative overflow-hidden py-2"
             aria-label="Partner organizations"
           >
             <div
-              class="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-amber-100 to-transparent"
+              class="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#f8f4e8] via-[#f8f4e8]/90 to-transparent"
             >
             </div>
             <div
-              class="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-amber-100 to-transparent"
+              class="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#f8f4e8] via-[#f8f4e8]/90 to-transparent"
             >
             </div>
             <ul
@@ -491,15 +524,15 @@ const testimonialColumnClass =
 
           <p class="m-0 text-xs font-semibold uppercase tracking-wider text-slate-600">Sponsors</p>
           <div
-            class="relative overflow-hidden rounded-2xl border border-slate-300/40 bg-amber-100/60 py-2"
+            class="relative overflow-hidden py-2"
             aria-label="Sponsor organizations"
           >
             <div
-              class="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-amber-100 to-transparent"
+              class="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#f8f4e8] via-[#f8f4e8]/90 to-transparent"
             >
             </div>
             <div
-              class="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-amber-100 to-transparent"
+              class="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#f8f4e8] via-[#f8f4e8]/90 to-transparent"
             >
             </div>
             <ul
@@ -611,14 +644,36 @@ const testimonialColumnClass =
     </main>
 
     <footer
-      class="site-footer mt-4 flex flex-wrap justify-between gap-2 border-t border-slate-300/60 pb-2 pt-5"
+      class="site-footer mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-slate-300/60 pb-2 pt-5"
     >
       <p class="m-0 text-sm text-slate-600">
         © {new Date().getFullYear()} Eastrix Labs | All rights reserved.
       </p>
-      <p class="m-0 text-sm text-slate-600">
-        Raising SaaS from the East ✨
-      </p>
+      <nav
+        class="flex flex-wrap items-center justify-end gap-2"
+        aria-label="Social media and website links"
+      >
+        {
+          footerLinks.map(({ label, href, icon: Icon }) => (
+            <a
+              class="group inline-flex h-10 w-10 items-center justify-center rounded-full bg-transparent text-slate-500 no-underline transition hover:bg-white/70 hover:text-slate-900"
+              href={href}
+              aria-label={label}
+              title={label}
+              {...(href.startsWith("http")
+                ? { target: "_blank", rel: "noreferrer" }
+                : {})}
+            >
+              <Icon
+                size={16}
+                className="transition group-hover:text-slate-900"
+                aria-hidden="true"
+                focusable="false"
+              />
+            </a>
+          ))
+        }
+      </nav>
     </footer>
   </div>
 
