@@ -1,13 +1,36 @@
-# Astro with Tailwind
+# Astro + React + TypeScript + shadcn/ui
 
-```sh
-bun create astro@latest -- --template with-tailwindcss
+This is a template for a new Astro project with React, TypeScript, and shadcn/ui.
+
+## Adding components
+
+To add components to your app, run the following command:
+
+```bash
+npx shadcn@latest add button
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/with-tailwindcss)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/with-tailwindcss)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/with-tailwindcss/devcontainer.json)
+This will place the ui components in the `src/components` directory.
 
-Astro comes with [Tailwind](https://tailwindcss.com) support out of the box. This example showcases how to style your Astro project with Tailwind.
+## Using components
 
-For complete setup instructions, please see our [Tailwind Styling Guide](https://docs.astro.build/en/guides/styling/#tailwind).
+To use the components in your app, import them in an `.astro` file:
+
+```astro
+---
+import { Button } from "@/components/ui/button"
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Astro App</title>
+  </head>
+  <body>
+    <div class="grid h-screen place-items-center content-center">
+      <Button>Button</Button>
+    </div>
+  </body>
+</html>
+```
