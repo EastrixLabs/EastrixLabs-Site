@@ -1,17 +1,28 @@
 ---
 import Layout from "@/layouts/main.astro"
-import { Button } from "@/components/ui/button"
+import Navbar from "@/components/Navbar.astro"
+import Hero from "@/components/Hero.astro"
+import Partners from "@/components/Partners.astro"
+import Projects from "@/components/Projects.astro"
+import Services from "@/components/Services.astro"
+import { TestimonialsV2 } from "@/components/ui/testimonial-v2"
+import Team from "@/components/Team.astro"
+import Contact from "@/components/Contact.astro"
+import { ThemeFooter } from "@/components/ThemeFooter"
 ---
 
 <Layout>
-  <div class="flex min-h-svh p-6">
-    <div class="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-      <div>
-        <h1 class="font-medium">Project ready!</h1>
-        <p>You may now add components and start building.</p>
-        <p>We've already added the button component for you.</p>
-        <Button client:load className="mt-2">Button</Button>
-      </div>
-    </div>
-  </div>
+  <Navbar />
+
+  <main class="flex min-h-svh w-full flex-col pt-32">
+    <Hero />
+    <Partners />
+    <Projects />
+    <Services />
+    <TestimonialsV2 client:only="react" />
+    {/* <Team /> */}
+    <Contact />
+  </main>
+  
+  <ThemeFooter client:load />
 </Layout>

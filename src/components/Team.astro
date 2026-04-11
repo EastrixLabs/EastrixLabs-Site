@@ -1,0 +1,20 @@
+---
+const team = [{name: "Kurt Calacday", role: "Founder & Lead Engineer"}];
+---
+<section id="team" class="bg-muted/30 py-24">
+  <div class="mx-auto w-full max-w-6xl px-6 text-center">
+    <h2 class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Meet the Team</h2>
+    <p class="mt-4 text-muted-foreground">The bright minds behind our products.</p>
+    <div class="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {team.map(member => (
+        <div class="flex flex-col items-center rounded-2xl border border-border/50 bg-card p-8 shadow-sm">
+          <div class="h-24 w-24 rounded-full border border-border/50 bg-muted shadow-sm flex items-center justify-center p-1">
+            <div class="h-full w-full rounded-full bg-primary/20" />
+          </div>
+          <h3 class="mt-6 text-lg font-bold text-foreground">{member.name}</h3>
+          <p class="mt-2 text-sm text-muted-foreground">{member.role}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

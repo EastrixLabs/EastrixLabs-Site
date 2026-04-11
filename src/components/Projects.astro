@@ -1,0 +1,36 @@
+---
+const projects = [
+  {
+    title: "Vendorzo POS",
+    desc: "SaaS-style retail operations and point-of-sale experiences designed for speed and clarity.",
+    link: "https://vendorzo.vercel.app/"
+  },
+  {
+    title: "Chromi Palette",
+    desc: "Studio-grade color interface for seamless development workflow.",
+    link: "#"
+  },
+  {
+    title: "Eastrix Flow",
+    desc: "Next-gen operational analytics platform for scaling enterprises.",
+    link: "#"
+  }
+];
+---
+<section id="projects" class="mx-auto w-full max-w-6xl px-6 py-24">
+  <div class="text-center">
+    <h2 class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Our Projects</h2>
+    <p class="mt-4 text-muted-foreground">Discover the successful tools incubated under Eastrix Labs.</p>
+  </div>
+  <div class="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+    {projects.map(p => (
+      <a href={p.link} class="group relative flex flex-col items-start justify-between rounded-2xl border border-border/50 bg-card p-6 shadow-sm transition-shadow hover:shadow-md">
+        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+          <div class="h-6 w-6 rounded-md bg-primary" />
+        </div>
+        <h3 class="text-lg font-bold text-foreground group-hover:text-primary transition-colors">{p.title}</h3>
+        <p class="mt-2 text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+      </a>
+    ))}
+  </div>
+</section>
